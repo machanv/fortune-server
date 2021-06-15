@@ -1,11 +1,10 @@
-const express = require('express');
-const app = express();
+const Koa = require("koa");
+const fs = require("fs");
+const app = new Koa();
 const port = 3000;
 
-app.get('/',(req,res)=>{
-    res.send('Hello world');
+app.use(async ctx=>{
+  ctx.body = 'Hello World'
 });
 
-app.listen(port,()=>{
-    console.log(`Example app listening at http://localhost:${port}`)
-})
+app.listen(3000);
