@@ -15,7 +15,8 @@ app.use(views(__dirname + "/views", {
 }));
 router.get('/',async (ctx) => {
   ctx.set("content-type", "text/html;charset=utf8");
-  ctx.body = "Hello World";
+  // ctx.body = "Hello World";
+  await ctx.render('index.pug');
 });
 app.use(router.routes());
 app.listen(3000);
