@@ -1,15 +1,5 @@
-doctype html
-html(lang="en")
-    head
-        meta(charset="UTF-8")
-        meta(http-equiv="X-UA-Compatible" content="IE=edge")
-        meta(name="viewport" content="width=device-width, initial-scale=1.0")
-        title Document
-        style. 
-            .mydiv{
-                color:red
-            }
-    body 
-        div(class="container")
-            header
-        
+extends layout
+
+block content
+  h1= title
+  p Welcome to #{title}
