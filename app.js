@@ -28,6 +28,11 @@ app.use(
   })
 );
 
+app.use(async (ctx, next) => {
+  ctx.set('Access-Control-Allow-Origin', '*');
+  await next();
+})
+
 // logger
 app.use(async (ctx, next) => {
   const start = new Date();
