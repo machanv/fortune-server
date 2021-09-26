@@ -5,7 +5,7 @@ router.prefix('/users');
 let userList = [
   {username: 'admin', password: '123'},
   {username: 'viola', password: '456'},
-]
+];
 
 router.get('/', async (ctx, next) => {
   // ctx.body = '<h1>this is a users response!</h1>';
