@@ -5,6 +5,8 @@ const json = require('koa-json');
 const onerror = require('koa-onerror');
 const bodyparser = require('koa-bodyparser');
 const logger = require('koa-logger');
+const jsonError = require('koa-json-error');
+const parameter = require('koa-parameter');
 
 const index = require('./routes/index');
 const users = require('./routes/users');
@@ -14,40 +16,54 @@ onerror(app);
 
 // middlewares
 app.use(
-  bodyparser({
-    enableTypes: ['json', 'form', 'text'],
-  })
+    bodyparser({
+        enableTypes: ['json', 'form', 'text'],
+    })
 );
 app.use(json());
+app.use(jsonError());
+app.use(parameter(app));
 app.use(logger());
 app.use(require('koa-static')(__dirname + '/public'));
 
 app.use(
-  views(__dirname + '/views', {
-    extension: 'pug',
-  })
+    views(__dirname + '/views', {
+        extension: 'pug',
+    })
 );
 
 app.use(async (ctx, next) => {
-  ctx.set('Access-Control-Allow-Origin', '*');
-  await next();
+    ctx.set('Access-Control-Allow-Origin', '*');
+    await next();
 })
 
 // logger
 app.use(async (ctx, next) => {
-  const start = new Date();
-  await next();
-  const ms = new Date() - start;
-  console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
+    const start = new Date();
+    await next();
+    const ms = new Date() - start;
+    console.log(`${ctx.method} ${ctx.url} - ${ms}ms`);
 });
+
+// app.use(async (ctx, next) => {
+//     try {
+//         await next();
+//     } catch (err) {
+//         ctx.status = err.status || err.statusCode | 500
+//         ctx.body = {
+//             msg: err.message
+//         }
+//     }
+// })
 
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 
 // error-handling
-app.on('error', (err, ctx) => {
-  console.error('server error', err, ctx);
-});
+// app.on('error', (err, ctx) => {
+//   console.error('server error', err, ctx);
+// });
+
 
 module.exports = app;
