@@ -1,4 +1,5 @@
 const router = require('koa-router')();
+const models = require('../models');
 
 router.prefix('/users');
 
@@ -19,20 +20,7 @@ router.get('/', async (ctx, next) => {
 });
 
 router.post('/add', async (ctx, next) => {
-    let {username, password} = ctx.request.body;
-    ctx.verify({
-        username: {type: string, require: true},
-        password: {type: string, require: true}
-    })
-    userList.push({
-        username, password
-    });
-    console.log(ctx.request);
-    console.log(username, password);
-    ctx.body = {
-        code: 200,
-        msg: 'add succeed'
-    };
+    models.User.create()
 });
 
 router.get('/find/:id', async (ctx, next) => {
