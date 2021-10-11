@@ -11,6 +11,10 @@ const parameter = require('koa-parameter');
 const index = require('./routes/index');
 const users = require('./routes/users');
 
+const db = require('./db');
+const { Mongoose } = require('mongoose');
+
+db();
 // error handler
 onerror(app);
 
