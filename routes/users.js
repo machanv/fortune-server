@@ -1,5 +1,5 @@
 const router = require('koa-router')();
-const models = require('../models');
+const {User} = require('../models');
 
 router.prefix('/users');
 
@@ -8,64 +8,27 @@ let userList = [
     {username: 'viola', password: '456'},
 ];
 
-router.get('/', async (ctx, next) => {
-    // ctx.body = '<h1>this is a users response!</h1>';
-    ctx.set("Allow", "GET,POST");
-    ctx.status = 200;
-    ctx.body = {
-        code: 200,
-        msg: 'this is a users response!',
-        data: userList
-    }
-});
+// router.get('/', async (ctx, next) => {
+//     // ctx.body = '<h1>this is a users response!</h1>';
+//     // ctx.set("Allow", "GET,POST");
+//     ctx.status = 200;
+//     ctx.body = {
+//         code: 200,
+//         msg: 'this is a users response!',
+//         data: userList
+//     }
+// });
 
+//  添加系统用户
 router.post('/add', async (ctx, next) => {
-    models.User.create()
-});
-
-router.get('/find/:id', async (ctx, next) => {
-    let id = ctx.params.id;
-    if (Number(id) > userList.length - 1) {
-        ctx.throw(412, '超过最大用户序号')
-    }
+    let {username = '',password=''} = ctx.request.query;
     ctx.body = {
-        code: 200,
-        msg: 'search succeed',
-        data: userList[id]
-    };
-    console.log(userList[id]);
-});
-
-router.get('/detail', async (ctx, next) => {
-    // const {id} = ctx.request.query;
-    const {id} = ctx.query;
-    console.log(id);
-    ctx.body = '用户详情';
-});
-
-router.delete('/del', async (ctx, next) => {
-    const {id} = ctx.request.body;
-    userList.splice(Number(id), 1);
-    console.log(`删除用户${id}成功`);
-    ctx.body = `删除用户${id}成功`;
-});
-
-router.delete('/del/:id', async (ctx, next) => {
-    const {id} = ctx.request.body;
-    if (Number(id) > userList.length - 1) {
-        ctx.throw(412, '超过当前用户数量')
+        username,password
     }
-    userList.splice(Number(id), 1);
-    console.log(`删除用户${id}成功`);
-    ctx.body = `删除用户${id}成功`;
+    // User.create()
 });
 
-router.put('/edit', async (ctx, next) => {
-    const {id} = ctx.query;
-    ctx.body = 'edit succeed';
-    console.log(id);
-})
-
+// 修改系统用户
 router.put('/update', async (ctx, next) => {
     const user = ctx.request.body;
     userList.splice(Number(user.id), 1, {
@@ -75,5 +38,14 @@ router.put('/update', async (ctx, next) => {
     ctx.body = 'update succeed';
 })
 
+// 删除系统用户
+router.post('/del', async (ctx, next) => {
+   
+})
+
+// 查询系统用户
+router.post('/find', async (ctx, next) => {
+   
+})
 
 module.exports = router;
