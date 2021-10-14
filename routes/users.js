@@ -1,13 +1,43 @@
 const router = require('koa-router')();
-const {User} = require('../models');
+const {User} = require('../models/user');
 
 router.prefix('/users');
 
 let userList = [
-    {username: 'admin', password: '123'},
-    {username: 'viola', password: '456'},
+  {username: 'admin', password: '123'},
+  {username: 'viola', password: '456'},
 ];
 
+// 添加系统用户
+router.post('/add', async (ctx, next) => {
+  let {username = '', password = ''} = ctx.request.query;
+  ctx.body = {
+    username, password
+  }
+  // User.create()
+});
+
+// 修改系统用户
+router.put('/update', async (ctx, next) => {
+  const user = ctx.request.body;
+  userList.splice(Number(user.id), 1, {
+    username: user.username,
+    password: user.password
+  });
+  ctx.body = 'update succeed';
+})
+
+// 删除系统用户
+router.post('/del', async (ctx, next) => {
+
+})
+
+// 查询系统用户
+router.get('/find', async (ctx, next) => {
+
+})
+
+// 查询用户列表
 // router.get('/', async (ctx, next) => {
 //     // ctx.body = '<h1>this is a users response!</h1>';
 //     // ctx.set("Allow", "GET,POST");
@@ -18,34 +48,5 @@ let userList = [
 //         data: userList
 //     }
 // });
-
-//  添加系统用户
-router.post('/add', async (ctx, next) => {
-    let {username = '',password=''} = ctx.request.query;
-    ctx.body = {
-        username,password
-    }
-    // User.create()
-});
-
-// 修改系统用户
-router.put('/update', async (ctx, next) => {
-    const user = ctx.request.body;
-    userList.splice(Number(user.id), 1, {
-        username: user.username,
-        password: user.password
-    });
-    ctx.body = 'update succeed';
-})
-
-// 删除系统用户
-router.post('/del', async (ctx, next) => {
-   
-})
-
-// 查询系统用户
-router.post('/find', async (ctx, next) => {
-   
-})
 
 module.exports = router;
