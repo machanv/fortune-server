@@ -10,7 +10,7 @@ let userList = [
 
 // 添加系统用户
 router.post('/add', async (ctx, next) => {
-  let {username = '', password = ''} = ctx.request.query;
+  let {username = '', password = ''} = ctx.request.body;
   ctx.body = {
     username, password
   }
