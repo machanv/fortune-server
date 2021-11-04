@@ -12,6 +12,7 @@ userSchema.methods.addUser = function () {
 /**
  * 查找用户*/
 userSchema.methods.findUser = function () {
+
 }
 
 /**

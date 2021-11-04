@@ -1,11 +1,11 @@
-import mongoose from 'mongoose';
+const mongoose = require('mongoose');
 
 const {Schema} = mongoose;
 
 const blogSchema = new Schema({
   title: String,
   author: String,
-  body: String,
+  content: String,
   comments: [{body: String, date: Date, user: String}],
   date: {type: Date, default: Date.now},
   hidden: Boolean,

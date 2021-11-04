@@ -1,20 +1,12 @@
-import {Blog} from "../models/blog";
-
 const router = require('koa-router')();
+const BlogController = require('../controller/blog');
 
-router.prefix('blog');
+router.prefix('/blog');
 
-const blogList = new Blog({type: type});
-
-router.post('/add', async (ctx, next) => {
-  const body = ctx.request.body;
-  await blogList.save();
-});
-
-router.get('/list', async (ctx, next) => {
-  const {type} = ctx.query;
-
-  ctx.body = blogList;
-});
+router.post('/add', BlogController.addBlog);
+router.post('/update', BlogController.updateBlog);
+router.post('/delete', BlogController.deleteBlog);
+router.get('/find', BlogController.findBlogList);
+router.get('/find/:id', BlogController.findOneBlog);
 
 module.exports = router;
