@@ -1,55 +1,19 @@
 const {Blog} = require('../models/blog');
+const crudUtl = require('./crudUtil');
 
 const addBlog = async (ctx) => {
-  let {content, title, author, create_time} = ctx.request.body;
-  await Blog.create({content, title, author, create_time}).then(result => {
-    if (result) {
-      ctx.body = {
-        code: 200,
-        msg: '新建文章成功',
-        data: result
-      }
-    } else {
-      ctx.body = {
-        code: 300,
-        msg: '新建文章失败'
-      }
-    }
-  }).catch(err => {
-    ctx.body = {
-      code: 400,
-      msg: '添加文章异常'
-    };
-    console.log(err);
-  })
+  let params = ctx.request.body;
+  await crudUtl.commonAdd(Blog, {params}, ctx);
 }
 
 const updateBlog = async (ctx) => {
   const params = ctx.request.body;
-  await Blog.updateOne({_id: params.id},
-    {content: params.content}).then(result => {
-    if (result) {
-      ctx.body = {
-        code: 200,
-        msg: '更新成功',
-        data: result
-      }
-    } else {
-      ctx.body = {
-        code: 300,
-        msg: '更新失败'
-      }
-    }
-  }).catch(err => {
-    ctx.body = {
-      code: 400,
-      msg: '更新异常'
-    }
-  })
+  await crudUtl.commonUpdate(Blog, {_id: params.id}, ctx)
 }
 
 const deleteBlog = async (ctx) => {
-
+  const params = ctx.request.body;
+  await crudUtl.commonDelete(Blog, {_id: params.id}, ctx)
 }
 
 const findBlogList = async (ctx) => {
@@ -90,6 +54,7 @@ const findOneBlog = async (ctx) => {
       console.log(err);
     })
 }
+
 module.exports = {
   addBlog, updateBlog, deleteBlog, findBlogList, findOneBlog
 }
