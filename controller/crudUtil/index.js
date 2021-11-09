@@ -12,6 +12,7 @@ const commonAdd = (model, params, ctx) => (
         msg: '添加成功',
         data: result
       }
+      console.log(ctx);
     } else {
       ctx.body = {
         code: 300,

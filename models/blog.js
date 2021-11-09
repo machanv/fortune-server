@@ -6,7 +6,7 @@ const blogSchema = new Schema({
   title: String,
   author: String,
   content: String,
-  comments: [{body: String, date: Date, user: String}],
+  comments: [{body: String, date: {type: Date, default: Date.now}, user: String}],
   date: {type: Date, default: Date.now},
   hidden: Boolean,
   meta: {votes: Number, favs: Number}
