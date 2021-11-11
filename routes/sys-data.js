@@ -3,6 +3,6 @@ const SysDataController = require('../controller/sys-data');
 
 router.prefix('/navList');
 
-router.get('/find', SysDataController.getNavList)
+router.get('/find', SysDataController.getNavList);
 
 module.exports = router;

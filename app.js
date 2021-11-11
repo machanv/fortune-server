@@ -14,7 +14,7 @@ const blog = require('./routes/blog');
 const sysData = require('./routes/sys-data');
 
 const db = require('./db');
-const {Mongoose} = require('mongoose');
+const { Mongoose } = require('mongoose');
 
 db();
 // error handler
@@ -41,7 +41,7 @@ app.use(
 app.use(async (ctx, next) => {
   ctx.set('Access-Control-Allow-Origin', '*');
   await next();
-})
+});
 
 // logger
 app.use(async (ctx, next) => {
@@ -65,13 +65,12 @@ app.use(async (ctx, next) => {
 // routes
 app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
-app.use(blog.routes(), users.allowedMethods());
-app.use(sysData.routes(), users.allowedMethods());
+app.use(blog.routes(), blog.allowedMethods());
+app.use(sysData.routes(), sysData.allowedMethods());
 
 // error-handling
 // app.on('error', (err, ctx) => {
 //   console.error('server error', err, ctx);
 // });
-
 
 module.exports = app;
