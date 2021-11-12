@@ -1,15 +1,16 @@
 const mongoose = require('mongoose');
 
-const {Schema} = mongoose;
+const { Schema } = mongoose;
 
 const sysDataSchema = new Schema({
-  letter: String,
-  data: [String],
-  id: String
-})
+  name: String,
+  link: String,
+});
 
-const SysData = new mongoose.model('sysData', sysDataSchema);
+sysDataSchema.methods.getNavList = function () {};
+
+const SysData = mongoose.model('sysData', sysDataSchema, 'nav-list');
 
 module.exports = {
-  SysData
-}
+  SysData,
+};
