@@ -2,9 +2,27 @@
 const { User } = require('../models/user');
 const crudUtil = require('./crudUtil');
 
+// 用户注册
 const userAdd = async (ctx) => {
-  let { username = 'viola', password = '' } = ctx.request.body;
-  await crudUtil.commonAdd(User, { username, password }, ctx);
+  let {
+    username = 'viola',
+    password = '',
+    avatar = '',
+    tel,
+    email,
+  } = ctx.request.body;
+
+  await crudUtil.commonAdd(
+    User,
+    { username, password, avatar, tel, email },
+    ctx
+  );
+};
+
+// 用户登录
+const userLogin = async (ctx) => {
+  let { username = '', password = '' } = ctx.request.body;
+  await crudUtil.findOne(User, { username, password }, ctx);
 };
 
 // 修改用户
@@ -37,10 +55,17 @@ const findOneUser = async (ctx) => {
   await crudUtil.findOne(User, { _id: id }, ctx);
 };
 
+// 查询所有的用户名、手机号码、email
+const findUserPublicInfo = async (ctx) => {
+  await crudUtil.commonFind(User, null, ctx, 'username,tel,email');
+};
+
 module.exports = {
   userAdd,
+  userLogin,
   userUpdate,
   userDelete,
   findUsers,
   findOneUser,
+  findUserPublicInfo,
 };

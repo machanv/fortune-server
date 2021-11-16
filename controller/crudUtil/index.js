@@ -97,12 +97,24 @@ const commonDelete = async (model, where, ctx) =>
  * @param {*} params
  * @param {*} ctx
  * */
-const commonFind = (model, where, ctx) =>
+const commonFind = (model, where, ctx, attr = '') =>
   model
     .find(where)
     .then((result) => {
       if (result) {
-        ctx.body = result;
+        if (attr) {
+          const arr = result.map((item) => {
+            const attrList = attr.split(',');
+            const newNode = {};
+            for (let node of attrList) {
+              newNode[node] = item[node];
+            }
+            return newNode;
+          });
+          ctx.body = arr;
+        } else {
+          ctx.body = result;
+        }
       } else {
         ctx.body = {
           code: 300,
