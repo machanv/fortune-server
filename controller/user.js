@@ -5,24 +5,56 @@ const crudUtil = require('./crudUtil');
 // 用户注册
 const userAdd = async (ctx) => {
   let {
-    username = 'viola',
+    username = '',
     password = '',
     avatar = '',
     tel,
     email,
   } = ctx.request.body;
-
-  await crudUtil.commonAdd(
-    User,
-    { username, password, avatar, tel, email },
-    ctx
-  );
+  if (username === '') {
+    ctx.body = {
+      code: 300,
+      msg: '用户名不可为空',
+    };
+  } else if (password === '') {
+    ctx.body = {
+      code: 300,
+      msg: '密码不可为空',
+    };
+  } else {
+    await crudUtil
+      .commonAdd(User, { username, password, avatar, tel, email }, ctx)
+      .then((result) => {
+        console.log(result);
+      });
+  }
 };
 
-// 用户登录
+/** 用户名密码登录
+ *  type = 0 用户名登录
+ *  type = 1 手机号登录
+ *  type = 2 邮箱登录 */
 const userLogin = async (ctx) => {
-  let { username = '', password = '' } = ctx.request.body;
-  await crudUtil.findOne(User, { username, password }, ctx);
+  let {
+    username = '',
+    password = '',
+    type = 0,
+    tel = -1,
+    email,
+  } = ctx.request.body;
+  switch (type) {
+    case 0:
+      await crudUtil.findOne(User, { username, password }, ctx);
+      break;
+    case 1:
+      await crudUtil.findOne(User, { tel, password }, ctx);
+      break;
+    case 2:
+      await crudUtil.findOne(User, { email, password }, ctx);
+      break;
+    default:
+      await crudUtil.findOne(User, { email, password }, ctx);
+  }
 };
 
 // 修改用户
@@ -52,7 +84,7 @@ const findUsers = async (ctx) => {
 // 查询单个用户
 const findOneUser = async (ctx) => {
   const { id } = ctx.params;
-  await crudUtil.findOne(User, { _id: id }, ctx);
+  await crudUtil.findOne(User, { _id: id }, ctx, 'username,tel,email');
 };
 
 // 查询所有的用户名、手机号码、email

@@ -111,9 +111,17 @@ const commonFind = (model, where, ctx, attr = '') =>
             }
             return newNode;
           });
-          ctx.body = arr;
+          ctx.body = {
+            code: 200,
+            msg: '查询成功',
+            data: arr,
+          };
         } else {
-          ctx.body = result;
+          ctx.body = {
+            code: 200,
+            msg: '查询成功',
+            data: result,
+          };
         }
       } else {
         ctx.body = {
@@ -135,16 +143,29 @@ const commonFind = (model, where, ctx, attr = '') =>
  * @param {*} params
  * @param {*} ctx
  * */
-const findOne = async (model, where, ctx) =>
+const findOne = async (model, where, ctx, attr = '') =>
   model
     .findOne(where)
     .then((result) => {
       if (result) {
-        ctx.body = {
-          code: 200,
-          msg: '查询成功',
-          data: result,
-        };
+        if (attr) {
+          const attrList = attr.split(',');
+          const newNode = {};
+          for (let item of attrList) {
+            newNode[item] = result[item];
+          }
+          ctx.body = {
+            code: 200,
+            msg: '查询成功',
+            data: newNode,
+          };
+        } else {
+          ctx.body = {
+            code: 200,
+            msg: '查询成功',
+            data: result,
+          };
+        }
       } else {
         ctx.body = {
           code: 300,
