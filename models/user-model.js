@@ -5,6 +5,7 @@ const userSchema = new mongoose.Schema({
   password: { type: String, required: true },
   avatar: { type: String },
   regist_date: { type: Date },
+  regist_type: { type: Number, default: 1 }, // 1：邮箱注册；2：手机号码注册
   login_date: { type: Date, default: new Date() },
   email: { type: String, default: '' },
   tel: { type: Number },
@@ -23,7 +24,7 @@ const userSchema = new mongoose.Schema({
 //  * 删除用户**/
 // userSchema.methods.deleteUser = function (uid) {};
 
-const User = mongoose.model('users', userSchema, 'users');
+const User = mongoose.model('user', userSchema, 'user-list');
 module.exports = {
   User,
 };

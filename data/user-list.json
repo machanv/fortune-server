@@ -1,0 +1,32 @@
+[
+  {
+    "_id": {
+      "$oid": "61935e93b92f56df2e770bd1"
+    },
+    "username": "viola2",
+    "password": "111",
+    "avatar": "",
+    "regist_date": {
+      "$date": "2021-11-16T07:32:33.696Z"
+    },
+    "login_date": {
+      "$date": "2021-11-16T07:32:33.696Z"
+    },
+    "email": "12345@qq.com",
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "61936aff7fe6d0f4e89f0b94"
+    },
+    "username": "Tracy",
+    "password": "122",
+    "avatar": "",
+    "login_date": {
+      "$date": "2021-11-16T08:24:49.505Z"
+    },
+    "email": "gdfgdfh@163.com",
+    "tel": 13512345644,
+    "__v": 0
+  }
+]

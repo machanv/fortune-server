@@ -1,17 +1,34 @@
 // add user
-const { User } = require('../models/user');
+const { User } = require('../models/user-model');
 const crudUtil = require('./crudUtil');
 
-// 用户注册
+/**  用户注册
+ * @params regist_type: 1：邮箱注册；2：手机号码注册
+ **/
 const userAdd = async (ctx) => {
-  let {
+  const {
     username = '',
     password = '',
-    avatar = '',
     tel,
     email,
+    regist_type,
   } = ctx.request.body;
-  if (username === '') {
+
+  if (regist_type === 1) {
+    if (email === undefined || email === '') {
+      ctx.body = {
+        code: 300,
+        msg: '邮箱不可为空',
+      };
+    }
+  } else if (regist_type === 2) {
+    if (tel === '' || tel === undefined) {
+      ctx.body = {
+        code: 300,
+        msg: '手机号码不可为空',
+      };
+    }
+  } else if (username === '') {
     ctx.body = {
       code: 300,
       msg: '用户名不可为空',
@@ -23,7 +40,11 @@ const userAdd = async (ctx) => {
     };
   } else {
     await crudUtil
-      .commonAdd(User, { username, password, avatar, tel, email }, ctx)
+      .commonAdd(
+        User,
+        { username, password, avatar, tel, email, regist_type },
+        ctx
+      )
       .then((result) => {
         console.log(result);
       });

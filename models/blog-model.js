@@ -18,7 +18,7 @@ blogSchema.methods.getBlogList = (type) => {
   return mongoose.model('Blog').find({ type: this.type }, type);
 };
 
-const Blog = mongoose.model('Blog', blogSchema, 'blogs');
+const Blog = mongoose.model('blog', blogSchema, 'blog-list');
 
 module.exports = {
   Blog,

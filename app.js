@@ -12,6 +12,7 @@ const index = require('./routes/index');
 const users = require('./routes/users');
 const blog = require('./routes/blog');
 const sysData = require('./routes/sys-data');
+const canvasData = require('./routes/canvas');
 
 const db = require('./db');
 const { Mongoose } = require('mongoose');
@@ -67,7 +68,7 @@ app.use(index.routes(), index.allowedMethods());
 app.use(users.routes(), users.allowedMethods());
 app.use(blog.routes(), blog.allowedMethods());
 app.use(sysData.routes(), sysData.allowedMethods());
-
+app.use(canvasData.routes(), sysData.allowedMethods());
 // error-handling
 // app.on('error', (err, ctx) => {
 //   console.error('server error', err, ctx);

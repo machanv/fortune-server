@@ -1,2 +1,3 @@
-export * from './blog';
-export * from './user';
+export * from './blog-model';
+export * from './user-model';
+export * from './canvas-model';
