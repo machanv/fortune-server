@@ -3,17 +3,17 @@
     "$oid": "618a404fb60d05fb78155e8f"
   },
   "name": "首页",
-  "link": ""
+  "link": "/"
 },{
   "_id": {
     "$oid": "618a40f0b60d05fb78155e94"
   },
   "name": "2D动画",
-  "link": "/2d"
+  "link": "/canvas"
 },{
   "_id": {
     "$oid": "618a40f0b60d05fb78155e95"
   },
   "name": "3D动画",
-  "link": "/3d"
+  "link": "/three-d"
 }]
