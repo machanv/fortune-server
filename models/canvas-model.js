@@ -3,11 +3,15 @@ const { Schema } = mongoose;
 
 const canvasModelSchema = new Schema({
   name: String,
-  data: JSON,
+  data: {
+    width: Number,
+    height: Number,
+    detail: Array,
+  },
 });
 
 const CanvasModel = mongoose.model(
-  'CanvasModel',
+  'canvasModel',
   canvasModelSchema,
   'canvas-data'
 );
