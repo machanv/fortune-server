@@ -17,9 +17,7 @@ const deleteCanvas = async (ctx) => {
 };
 
 const getCanvasList = async (ctx) => {
-  await crudUtil.commonFind(CanvasModel, null, ctx).then((response) => {
-    return response.body;
-  });
+  await crudUtil.commonFind(CanvasModel, null, ctx);
 };
 
 const getOneCanvasInfo = async (ctx) => {

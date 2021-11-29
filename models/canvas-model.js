@@ -7,7 +7,7 @@ const canvasModelSchema = new Schema({
 });
 
 const CanvasModel = mongoose.model(
-  'canvasModel',
+  'CanvasModel',
   canvasModelSchema,
   'canvas-data'
 );
