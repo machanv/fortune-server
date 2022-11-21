@@ -1,0 +1,22 @@
+{
+  "name": "fortune-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/machanv/fortune-server.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/machanv/fortune-server/issues"
+  },
+  "homepage": "https://github.com/machanv/fortune-server#readme",
+  "dependencies": {
+    "koa": "^2.13.4"
+  }
+}
