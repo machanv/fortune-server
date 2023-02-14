@@ -1,12 +1,18 @@
 const Koa = require('koa');
-const { KoaBody } = require('koa-body');
+const { koaBody } = require('koa-body');
 
+const userRouter = require('../router/user.route');
 const docRouter = require('../router/doc.route');
+const twoDimensionalRouter = require('../router/two-dimensional.route');
+const threeDimensionalRouter = require('../router/three-dimensional.route');
 
 const app = new Koa();
-app.use(KoaBody);
+app.use(koaBody());
 
-app.use(docRouter);
+app.use(userRouter.routes());
+app.use(docRouter.routes());
+app.use(twoDimensionalRouter.routes());
+app.use(threeDimensionalRouter.routes());
 
 app.use((ctx, next) => {
   ctx.body = '';
