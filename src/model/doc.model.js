@@ -10,10 +10,20 @@ const Doc = seq.define('mc_doc', {
     unique: false,
     comment: '文章标题',
   },
-  context: {
+  content: {
     type: DataTypes.STRING,
     allowNull: false,
     comment: '文章内容',
+  },
+  tag: {
+    type: DataTypes.ARRAY,
+    allowNull: false,
+    comment: '标签',
+  },
+  desc: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: '内容预览',
   },
   author: {
     type: DataTypes.NUMBER,
@@ -30,7 +40,7 @@ const Doc = seq.define('mc_doc', {
     allowNull: true,
     comment: '图片',
   },
-  content: {
+  comment: {
     type: DataTypes.ARRAY, // 属性包括
     allowNull: true,
     comment: '评论',
