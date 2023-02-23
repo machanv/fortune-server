@@ -3,7 +3,7 @@ const { DataTypes, Deferrable } = require('sequelize');
 const seq = require('../db/seq');
 const User = require('./user.model');
 
-const Doc = seq.define('mc_doc', {
+const Article = seq.define('mc_article', {
   title: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -47,4 +47,4 @@ const Doc = seq.define('mc_doc', {
   },
 });
 
-module.exports = Doc;
+module.exports = Article;
