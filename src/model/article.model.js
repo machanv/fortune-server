@@ -2,6 +2,7 @@
 const { DataTypes, Deferrable } = require('sequelize');
 const seq = require('../db/seq');
 const User = require('./user.model');
+const Comment = require('./comment.model');
 
 const Article = seq.define('mc_article', {
   title: {
@@ -16,7 +17,7 @@ const Article = seq.define('mc_article', {
     comment: '文章内容',
   },
   tag: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.STRING,
     allowNull: false,
     comment: '标签',
   },
@@ -36,12 +37,12 @@ const Article = seq.define('mc_article', {
     },
   },
   images: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.ARRAY(DataTypes.STRING),
     allowNull: true,
     comment: '图片',
   },
   comment: {
-    type: DataTypes.ARRAY, // 属性包括
+    type: DataTypes.ARRAY(Comment), // 属性包括
     allowNull: true,
     comment: '评论',
   },

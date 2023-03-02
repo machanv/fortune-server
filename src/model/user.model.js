@@ -33,4 +33,5 @@ const User = seq.define('mc_user', {
   },
 });
 
+User.sync({ force: true });
 module.exports = User;

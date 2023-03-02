@@ -8,8 +8,14 @@ const {
 const { JWT_SECRET } = require('../config/config.default');
 
 class UserController {
-  async register() {}
+  // 注册
+  async regist(ctx, next) {
+    const { user_name, password, email } = ctx.request.body;
+    try {
+    } catch (err) {}
+  }
 
+  // 登录
   async login(ctx, next) {
     const { user_name, password } = ctx.request.body;
     try {
