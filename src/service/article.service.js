@@ -1,16 +1,16 @@
-const Doc = require('../model/doc.model');
+const Article = require('../model/article.model');
 const UserService = require('./user.service');
 
-class DocService {
+class ArticleService {
   // 增
-  async createDoc(title, content, images, author) {
-    const res = await Doc.create({ title, content, images, author });
+  async createArticle(title, content, images, author) {
+    const res = await Article.create({ title, content, images, author });
     return res;
   }
 
   // 修改
-  async updateDoc(id, title, content, images) {
-    const res = await Doc.update(
+  async updateArticle(id, title, content, images) {
+    const res = await Article.update(
       { title, content, images },
       {
         where: { id },
@@ -20,8 +20,8 @@ class DocService {
   }
 
   // 删除
-  async deleteDoc(id) {
-    const res = Doc.destroy({
+  async deleteArticle(id) {
+    const res = Article.destroy({
       where: { id },
     });
     return res;
@@ -29,14 +29,14 @@ class DocService {
 
   // 查询
   async findDocs(title, tag) {
-    const res = Doc.findAll({
+    const res = Article.findAll({
       where: { title, tag },
     });
     return res;
   }
 
-  async findOneDoc(id) {
-    const res = Doc.findOne({
+  async findOneArticle(id) {
+    const res = Article.findOne({
       where: { id },
     });
     return res;

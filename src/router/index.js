@@ -9,4 +9,5 @@ fs.readdirSync(__dirname).forEach((file) => {
     router.use(r.routes());
   }
 });
+
 module.exports = router;

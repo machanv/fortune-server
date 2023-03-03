@@ -27,7 +27,7 @@ const Article = seq.define('mc_article', {
     comment: '内容预览',
   },
   author: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
     allowNull: false,
     comment: '作者',
     references: {
@@ -47,5 +47,5 @@ const Article = seq.define('mc_article', {
     comment: '评论',
   },
 });
-
+// Article.sync({ force: true });
 module.exports = Article;

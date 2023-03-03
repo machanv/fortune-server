@@ -4,12 +4,6 @@ const seq = require('../db/seq');
 
 // 创建模型
 const User = seq.define('mc_user', {
-  email: {
-    type: DataTypes.STRING,
-    allowNull: false,
-    unique: true,
-    comment: '注册邮箱唯一',
-  },
   user_name: {
     type: DataTypes.STRING,
     allowNull: false,
@@ -21,10 +15,6 @@ const User = seq.define('mc_user', {
     allowNull: false,
     comment: '密码',
   },
-  area: {
-    type: DataTypes.NUMBER,
-    comment: '用户所在地',
-  },
   is_admin: {
     type: DataTypes.BOOLEAN,
     allowNull: false,
@@ -33,5 +23,6 @@ const User = seq.define('mc_user', {
   },
 });
 
-User.sync({ force: true });
+// User.sync({ force: true });
+
 module.exports = User;
