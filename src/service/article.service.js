@@ -1,6 +1,6 @@
 const Article = require('../model/article.model');
-const UserService = require('./user.service');
 
+// 操作数据库的方法
 class ArticleService {
   // 增
   async createArticle(title, content, images, author) {
@@ -43,4 +43,4 @@ class ArticleService {
   }
 }
 
-module.exports = UserService;
+module.exports = new ArticleService();
