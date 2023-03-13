@@ -18,5 +18,9 @@ const Comment = seq.define('mc_comment', {
     comment: '用户id，发评论的人',
   },
 });
+Comment.belongsTo(User, {
+  foreignKey: 'user_id',
+  as: 'user_info',
+});
 Comment.sync({ force: true });
 module.exports = Comment;

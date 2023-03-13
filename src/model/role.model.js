@@ -9,5 +9,5 @@ const Role = seq.define('mv_role', {
     comment: '角色名称',
   },
 });
-Role.sync({ force: true });
+// Role.sync({ force: true });
 module.exports = Role;

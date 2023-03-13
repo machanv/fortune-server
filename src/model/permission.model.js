@@ -8,3 +8,6 @@ const Permission = seq.define('mc_permission', {
     comment: '权限名称',
   },
 });
+
+Permission.sync({ force: true });
+module.exports = Permission;
