@@ -22,5 +22,6 @@ Comment.belongsTo(User, {
   foreignKey: 'user_id',
   as: 'user_info',
 });
+
 Comment.sync({ force: true });
 module.exports = Comment;

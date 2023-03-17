@@ -7,6 +7,11 @@ const Permission = seq.define('mc_permission', {
     allowNull: false,
     comment: '权限名称',
   },
+  pid: {
+    type: DataTypes.STRING,
+    allowNull: false,
+    comment: '父级权限',
+  },
 });
 
 Permission.sync({ force: true });
