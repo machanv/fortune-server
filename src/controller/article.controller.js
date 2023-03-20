@@ -34,15 +34,15 @@ class ArticleController {
     }
   }
 
-  // // 更新文档
-  // async updateArticle(ctx, next) {}
-  // // 删除文档
-  // async removeArticle(ctx, next) {}
+  // 更新文档
+  async updateArticle(ctx, next) {}
+  // 删除文档
+  async removeArticle(ctx, next) {}
 
-  // // 查询文档列表
-  // async getArticleList(ctx, next) {}
-  // // 查询文档详情
-  // async getOneArticle(ctx, next) {}
+  // 查询文档列表
+  async getArticleList(ctx, next) {}
+  // 查询文档详情
+  async getOneArticle(ctx, next) {}
 }
 
 module.exports = new ArticleController();

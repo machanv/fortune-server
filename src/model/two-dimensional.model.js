@@ -15,5 +15,5 @@ const TwoDimensional = seq.define('mc_two_dimensional', {
     comment: '2D文件具体内容',
   },
 });
-
+TwoDimensional.sync({ force: true });
 module.exports = TwoDimensional;

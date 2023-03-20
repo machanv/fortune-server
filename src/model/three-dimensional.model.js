@@ -16,4 +16,5 @@ const ThreeDimensional = seq.define('mc_three_dimensional', {
   },
 });
 
+ThreeDimensional.sync({ force: true });
 module.exports = ThreeDimensional;

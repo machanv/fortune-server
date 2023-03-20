@@ -21,6 +21,12 @@ const User = seq.define('mc_user', {
     defaultValue: 0,
     comment: '是否管理员，0：不是管理员（默认），1：是管理员',
   },
+  role: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    defaultValue: 0,
+    comment: '用户角色',
+  },
 });
 
 // User.sync({ force: true });
