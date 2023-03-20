@@ -22,7 +22,7 @@ const User = seq.define('mc_user', {
     comment: '密码',
   },
   area: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.INTEGER,
     comment: '用户所在地',
   },
   is_admin: {
@@ -33,4 +33,5 @@ const User = seq.define('mc_user', {
   },
 });
 
+// User.sync({ force: true });
 module.exports = User;

@@ -46,5 +46,6 @@ const Article = seq.define('mc_article', {
     comment: '评论',
   },
 });
+Article.sync({force:true})
 
 module.exports = Article;
