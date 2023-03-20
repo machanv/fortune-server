@@ -46,4 +46,9 @@ module.exports = {
     message: '没有管理员权限',
     result: '',
   },
+  createArticleFailed: {
+    code: 20001,
+    message: '创建文档失败',
+    result: '',
+  },
 };

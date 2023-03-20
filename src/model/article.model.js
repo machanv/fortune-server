@@ -2,6 +2,7 @@
 const { DataTypes, Deferrable } = require('sequelize');
 const seq = require('../db/seq');
 const User = require('./user.model');
+const Comment = require('./comment.model');
 
 const Article = seq.define('mc_article', {
   title: {
@@ -16,7 +17,7 @@ const Article = seq.define('mc_article', {
     comment: '文章内容',
   },
   tag: {
-    type: DataTypes.ARRAY,
+    type: DataTypes.STRING,
     allowNull: false,
     comment: '标签',
   },
@@ -26,26 +27,31 @@ const Article = seq.define('mc_article', {
     comment: '内容预览',
   },
   author: {
-    type: DataTypes.NUMBER,
+    type: DataTypes.BIGINT,
     allowNull: false,
     comment: '作者',
-    references: {
-      model: User, // 关联用户表，查询用户名
-      key: 'id',
-      deferrable: Deferrable.INITIALLY_IMMEDIATE,
-    },
+    // references: {
+    //   model: User, // 关联用户表，查询用户名
+    //   key: 'id',
+    //   deferrable: Deferrable.INITIALLY_IMMEDIATE,
+    // },
   },
-  images: {
-    type: DataTypes.ARRAY,
-    allowNull: true,
-    comment: '图片',
+  status: {
+    type: DataTypes.INTEGER,
+    allowNull: false,
+    comment: '文章状态，0:未发布；1：草稿箱；2：已发布；3：垃圾回收',
   },
-  comment: {
-    type: DataTypes.ARRAY, // 属性包括
-    allowNull: true,
-    comment: '评论',
-  },
+  // images: {
+  //   type: DataTypes.ARRAY(DataTypes.STRING),
+  //   allowNull: true,
+  //   comment: '图片',
+  // },
+  // comment: {
+  //   type: DataTypes.ARRAY(Comment), // 属性包括
+  //   allowNull: true,
+  //   comment: '评论',
+  // },
 });
-Article.sync({force:true})
+// Article.sync({ force: true });
 
 module.exports = Article;
